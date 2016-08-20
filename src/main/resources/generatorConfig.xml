@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE generatorConfiguration  
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"  
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">  
+<generatorConfiguration>  
+    <!-- 引入配置文件 -->  
+    <properties resource="jdbc.properties"/>
+  
+	<!-- 数据库驱动-->  
+    <classPathEntry location="C:\Users\min\.m2\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar"/>
+    
+    <context id="ssm"  targetRuntime="MyBatis3">  
+        <commentGenerator>  
+            <property name="suppressAllComments" value="false"/><!-- 是否取消注释 -->  
+            <property name="suppressDate" value="true" /> <!-- 是否生成注释代时间戳-->     
+        </commentGenerator>  
+        <!--数据库链接URL，用户名、密码 -->  
+        <jdbcConnection driverClass="${jdbc.driver}" 
+        				connectionURL="${jdbc.url}" 
+        				userId="${jdbc.username}" 
+        				password="${jdbc.password}">  
+        </jdbcConnection>
+        
+        <!-- 类型转换 -->
+        <javaTypeResolver>
+        	<!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->    
+            <property name="forceBigDecimals" value="false"/>  
+        </javaTypeResolver>
+        
+        <!-- 生成实体的包名和位置-->  
+        <javaModelGenerator targetPackage="com.cuit.mvnssm.pojo" targetProject="src/main/java">
+        	<!-- 是否在当前路径下新加一层schema,eg：fase路径com.oop.eksp.user.model， true:com.oop.eksp.user.model.[schemaName] -->  
+            <property name="enableSubPackages" value="true"/> 
+            <!-- 是否针对string类型的字段在set的时候进行trim调用 --> 
+            <property name="trimStrings" value="true"/>  
+        </javaModelGenerator>
+        
+        <!-- 生成映射文件Mapxml的包名和位置-->  
+        <sqlMapGenerator targetPackage="com.cuit.mvnssm.mapping" targetProject="src/main/java">  
+            <property name="enableSubPackages" value="true"/>  
+        </sqlMapGenerator>
+        
+        <!-- 生成DAO的包名和位置-->  
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.cuit.mvnssm.dao" targetProject="src/main/java">  
+            <property name="enableSubPackages" value="true"/>  
+        </javaClientGenerator>  
+        <!-- 要生成哪些表-->  
+        <table tableName="student" domainObjectName="StudentEntity" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>  
+    </context>  
+</generatorConfiguration>  
