@@ -20,6 +20,7 @@ public class StudentController {
 		int id = Integer.parseInt(request.getParameter("id"));
 		StudentEntity student = this.studentService.selectById(id);
 		model.addAttribute("student", student);
+		System.out.println(student);
 		return "showStudent";
 	}
 }
